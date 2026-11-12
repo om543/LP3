@@ -1,0 +1,27 @@
+# Non-Recursive (Iterative) Method
+def fibonacci_iterative(n):
+    a, b = 0, 1
+
+    for i in range(n):
+        print(a, end=" ")
+        a, b = b, a + b
+
+
+# Recursive Method
+def fibonacci_recursive(n):
+    if n <= 1:
+        return n
+    return fibonacci_recursive(n - 1) + fibonacci_recursive(n - 2)
+
+
+# Main Program
+n = int(input("Enter the number of terms: "))
+
+print("\nFibonacci Series (Non-Recursive):")
+fibonacci_iterative(n)
+
+print("\nFibonacci Series (Recursive):")
+for i in range(n):
+    print(fibonacci_recursive(i), end=" ")
+
+print()
