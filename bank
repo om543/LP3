@@ -1,45 +1,26 @@
 // SPDX-License-Identifier: MIT
-
-pragma solidity ^0.8.34;
-
+pragma solidity ^0.8.0;
 
 contract Bank {
 
+    uint public balance;
 
-    mapping(address => uint) public balance;
+    // Deposit money
+    function deposit() public payable {
+        balance = balance + msg.value;
+    }
 
+    // Withdraw money
+    function withdraw(uint amount) public {
+        require(amount <= balance, "Insufficient balance");
 
-    // Deposit money
+        balance = balance - amount;
 
-    function deposit(uint amount) public {
+        payable(msg.sender).transfer(amount);
+    }
 
-        require(amount > 0, "Invalid amount");
-
-
-        balance[msg.sender] += amount;
-
-    }
-
-    // Withdraw money
-
-    function withdraw(uint amount) public {
-
-        require(amount > 0, "Invalid amount");
-
-        require(balance[msg.sender] >= amount, "Insufficient balance");
-
-
-        balance[msg.sender] -= amount;
-
-    }
-
-
-    // Show balance
-
-    function showBalance() public view returns (uint) {
-
-        return balance[msg.sender];
-
-    }
-
+    // Show balance
+    function showBalance() public view returns(uint) {
+        return balance;
+    }
 }
