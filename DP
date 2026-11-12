@@ -1,0 +1,29 @@
+n = int(input("Enter a number: "))
+
+def iterative():
+        result = []
+        num1, num2 = 0, 1
+        for i in range(n):
+                result.append(num1)
+                num1, num2 = num2, num1 + num2
+                
+        return result
+
+dp = [-1] * (n)
+dp[0], d[1] = 0, 1
+def recursive(i):
+        if i == 0:
+            return 0
+        if i == 1:
+            return 1
+
+        if dp[i] != -1:
+            return dp[i]
+
+        dp[i] = recursive(i - 1) + recursive(i - 2)
+        
+        return dp[i]
+
+print("Iterative: ", iterative())
+recursive(n-1)
+print("Recursive: ", dp)
